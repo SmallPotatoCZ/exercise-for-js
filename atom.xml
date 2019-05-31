@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://smallpotatocz.github.io/exercise-for-js</id>
+    <title>EsilyZhang</title>
+    <updated>2019-05-31T15:26:56.294Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://smallpotatocz.github.io/exercise-for-js"/>
+    <link rel="self" href="https://smallpotatocz.github.io/exercise-for-js/atom.xml"/>
+    <subtitle>吾尝终日不食，终夜不寝，以思，无益，不如学也。</subtitle>
+    <logo>https://smallpotatocz.github.io/exercise-for-js/images/avatar.png</logo>
+    <icon>https://smallpotatocz.github.io/exercise-for-js/favicon.ico</icon>
+    <rights>All rights reserved 2019, EsilyZhang</rights>
+    <entry>
+        <title type="html"><![CDATA[Scope]]></title>
+        <id>https://smallpotatocz.github.io/exercise-for-js/post/scope</id>
+        <link href="https://smallpotatocz.github.io/exercise-for-js/post/scope">
+        </link>
+        <updated>2019-05-31T15:24:34.000Z</updated>
+        <summary type="html"><![CDATA[<p>记录学习 JavaScript 中遇到的练习题，以便之后复习。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>记录学习 JavaScript 中遇到的练习题，以便之后复习。</p>
+<!-- more -->
+]]></content>
+    </entry>
+</feed>
