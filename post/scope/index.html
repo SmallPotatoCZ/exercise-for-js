@@ -7,7 +7,7 @@
 <meta name="description" content="吾尝终日不食，终夜不寝，以思，无益，不如学也。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://smallpotatocz.github.io/exercise-for-js/favicon.ico?v=1559316385639">
+<link rel="shortcut icon" href="https://smallpotatocz.github.io/exercise-for-js/favicon.ico?v=1559354737144">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -85,7 +85,7 @@
             <p class="article-meta">
               2019-05-31
               
-                <a href="https://smallpotatocz.github.io/exercise-for-js/tag/cYB_yrKQ1" class="badge ">
+                <a href="https://smallpotatocz.github.io/exercise-for-js/tag/cYB_yrKQ1" class="badge secondary">
                   JavaScript
                 </a>
               
@@ -96,6 +96,19 @@
             <div class="post-content">
               <p>记录学习 JavaScript 中遇到的练习题，以便之后复习。</p>
 <!-- more -->
+<h1 id="作用域">作用域</h1>
+<h2 id="词法作用域">词法作用域</h2>
+<pre><code class="language-javascript">function foo(a){
+	var b = a * 2;
+	function bar(c){
+		console.log(a, b, c);
+	}
+	
+	bar(b * 3);
+}
+
+foo(2); // 2, 4, 12
+</code></pre>
 
             </div>
           </article>
@@ -108,7 +121,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://smallpotatocz.github.io/exercise-for-js/images/avatar.png?v=1559316385639" class="no-responsive avatar">
+    <img src="https://smallpotatocz.github.io/exercise-for-js/images/avatar.png?v=1559354737144" class="no-responsive avatar">
     <div class="text-muted">吾尝终日不食，终夜不寝，以思，无益，不如学也。</div>
     <div class="social-container">
       
