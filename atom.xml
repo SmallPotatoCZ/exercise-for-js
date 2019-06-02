@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://smallpotatocz.github.io/exercise-for-js</id>
     <title>EsilyZhang</title>
-    <updated>2019-06-02T09:55:02.741Z</updated>
+    <updated>2019-06-02T12:07:14.672Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://smallpotatocz.github.io/exercise-for-js"/>
     <link rel="self" href="https://smallpotatocz.github.io/exercise-for-js/atom.xml"/>
@@ -10,6 +10,29 @@
     <logo>https://smallpotatocz.github.io/exercise-for-js/images/avatar.png</logo>
     <icon>https://smallpotatocz.github.io/exercise-for-js/favicon.ico</icon>
     <rights>All rights reserved 2019, EsilyZhang</rights>
+    <entry>
+        <title type="html"><![CDATA[掌握 Console 开发者工具]]></title>
+        <id>https://smallpotatocz.github.io/exercise-for-js/post/zhang-wo-console-kai-fa-zhe-gong-ju</id>
+        <link href="https://smallpotatocz.github.io/exercise-for-js/post/zhang-wo-console-kai-fa-zhe-gong-ju">
+        </link>
+        <updated>2019-06-02T10:04:48.000Z</updated>
+        <summary type="html"><![CDATA[<p>Console 的使用例子
+<a href="https://blog.teamtreehouse.com/mastering-developer-tools-console">原文连接</a></p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Console 的使用例子
+<a href="https://blog.teamtreehouse.com/mastering-developer-tools-console">原文连接</a></p>
+ <!-- more -->
+<h1 id="掌握-console-开发者工具">掌握 Console 开发者工具</h1>
+<p>当你调试前端应用时，<code>console</code>工具是你可以使用的最强大的工具。为了调试更加简单，<code>console</code>有许多的 api 可以使用。见过的盘查问题最常用的方式是<code>console.log()</code>或<code>console.dir()</code>；但是<code>console</code>还为开发者提供了很多别的接口。</p>
+<p>这篇文章你将要学习，使用<code>console</code> API 提供的方法如何去调试你的 web 应用。一些浏览器自己提供了独有的更多功能，所以我会提出其中的兼容性问题。</p>
+<p>让我们开始吧。</p>
+<h2 id="使用console开发者工具">使用<code>console</code>开发者工具</h2>
+<p>如果你之前还没有使用<code>console</code>开发者工具，但是也不用担心。在这一小节，我将要去向你展示如何去获得和使用<code>console</code>。如果你已经对这个熟悉，放心地跳到下一小结。</p>
+<p>打开你的浏览器的开发者工具有很多种的方法。最简单的是在页面的任何地方点击鼠标右键，在出现的菜单中选择<code>审查元素</code>。</p>
+<p>你也可以使用快捷键去打开开发者工具。浏览器的快捷建在 Mac 上是 <code>Alt</code> + <code>Command</code> + <code>I</code>，对于 Windows 你可以使用 <code>Ctrl</code> + <code>Shift</code> + <code>I</code>。</p>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559477173222.png" alt="谷歌开发者工具"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Scope]]></title>
         <id>https://smallpotatocz.github.io/exercise-for-js/post/scope</id>
