@@ -7,7 +7,7 @@
 <meta name="description" content="吾尝终日不食，终夜不寝，以思，无益，不如学也。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://smallpotatocz.github.io/exercise-for-js/favicon.ico?v=1559364734535">
+<link rel="shortcut icon" href="https://smallpotatocz.github.io/exercise-for-js/favicon.ico?v=1559466970781">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -93,7 +93,7 @@
             <p class="article-meta">
               2019-05-31
               
-                <a href="https://smallpotatocz.github.io/exercise-for-js/tag/cYB_yrKQ1" class="badge secondary">
+                <a href="https://smallpotatocz.github.io/exercise-for-js/tag/cYB_yrKQ1" class="badge ">
                   JavaScript
                 </a>
               
@@ -120,9 +120,6 @@
 
 foo(2); // 2 4 12
 </code></pre>
-<blockquote>
-<p><a href="https://gist.githubusercontent.com/SmallPotatoCZ/d4b51df7f990c22aacac99c9a05205be/raw/03b99aa28dc970c7b8647d50ec22999455dca343/lexical-scope">remote</a></p>
-</blockquote>
 </li>
 <li>
 <p><code>eval</code> 欺骗词法作用域</p>
@@ -136,8 +133,7 @@ var b = 2;
 foo(&quot;var b = 3;&quot;, 1); // 1, 3
 </code></pre>
 <blockquote>
-<p><code>eval</code>函数动态插入变量 b。
-<a href="https://gist.githubusercontent.com/SmallPotatoCZ/d4b51df7f990c22aacac99c9a05205be/raw/c60d3c05ff68b59bed5cca191c2ecfedb1c4e5cf/cheating-lexical-eval">remote</a></p>
+<p><code>eval</code>函数动态插入变量 b。</p>
 </blockquote>
 <pre><code class="language-javascript">function foo(str){
 	&quot;use strict&quot;;
@@ -167,14 +163,227 @@ var o2 = {
 	b: 3
 };
 
+
+foo(o1);
+console.log(o1.a);
+
+foo(o2);
+console.log(o2.a);
+console.log(a);
 </code></pre>
-<p>var res = decodeURI(
-'http://test.com/cwwsTjrkUaLA0Fj%2FtpqyK05MXOfJYryybBj6xhe5rWAP95N%2FTv6n%2BjZXHmQUZDTHhfSZPHtCO9c%3D'
-);</p>
+<blockquote>
+<p><code>with</code> 可以将没有操作属性的对象处理为一个完全隔离的词法作用域，因此这个对象的属性也被处理为定义在这个作用域中的词法标识符。</p>
+</blockquote>
+</li>
+<li>
+<p>IIFE</p>
+<pre><code class="language-javascript">// 形式1
+(function(a){
+	console.log(a);
+})(2);
+
+// 形式2
+(function(a){
+	console.log(a);
+}(2));
+</code></pre>
+<blockquote>
+<p>IIFE: Immediately Invoked Function Expression
+(fun...) 使 func... 成为函数表达式，而不是声明函数</p>
+</blockquote>
+</li>
+<li>
+<p>块作用域</p>
+<pre><code class="language-javascript">// 忽略声明了全局变量的事实
+for(var i = 0; i &lt; 5; i++){
+	console.log(i);
+}
+
+// with
+(function(){
+	with ({a:2}){
+		&quot;use strict&quot;;
+		var a = 3;
+		console.log('inside with', a);
+	}
+	console.log(a);
+})();
+
+// try/catch
+try{
+	undefined();
+}catch(err){
+	console.log(err);
+}
+
+console.log(err);
+
+// let
+if(true){
+	{
+		let a = 2;
+		console.log(a);
+	}
+}
+
+// 优化垃圾回收
+
+function process(data){
+	console.log(&quot;do something&quot;);
+}
+
+var someReallyBigData = {};
+
+process(someReallyBigData);
+
+var btn = document.body;
+btn.addEventListener(&quot;click&quot;, function(){
+	console.log(&quot;button clicked&quot;);
+},/*capturingPhase*/false);
+// 由于 click 函数的形成的一个覆盖这个作用域的闭包，JavaScript 引擎极有可能依然保留这个结构
+
+// 块作用域
+function process(data){
+	console.log(&quot;do something&quot;);
+}
+{
+	let someReallyBigData = {};
+
+	process(someReallyBigData);
+}
+
+var btn = document.body;
+btn.addEventListener(&quot;click&quot;, function(){
+	console.log(&quot;button clicked&quot;);
+},/*capturingPhase*/false);
+
+// let-for
+{
+	let j;
+	for(j = 0;j&lt; 5;j++){
+		let i = j; // 每次迭代会重新绑定
+		console.log(i);
+	}
+}
+</code></pre>
+</li>
+<li>
+<p>变量提升</p>
+<pre><code class="language-javascript">		// 对函数作用域的引用
+	function foo(){
+		var a = 2;
+		function bar(){
+			console.log(a);
+		}
+
+		return bar;
+	}
+
+	var baz = foo();
+	baz();
+
+	// closure-for
+	for(var i = 1; i &lt;= 5; i++){
+		setTimeout(function timer(){
+			console.log(i);
+		}, i*1000);
+	}
+	// x
+	for(var i = 1;i &lt;= 5; i++){
+		(function(){
+			setTimeout(function timer(){
+				console.log(i);
+			},i*1000);
+		})();
+	}
+	// ^ -&gt; 
+	for(var i = 1;i &lt;= 5; i++){
+		(function(){
+			var j = i;
+			setTimeout(function timer(){
+				console.log(j);
+			},j*1000);
+		})();
+	}
+
+	// let
+	for(let i = 1;i &lt;= 5;i++){
+		setTimeout(function timer(){
+			console.log(i);
+		},i*1000);
+	}
+</code></pre>
+<ol start="6">
+<li>模块<pre><code class="language-javascript">	function CoolModule(){
+var something = &quot;cool&quot;;
+var another = [1, 2, 3];
+
+function doSomething(){
+	console.log(something);
+}
+
+function doAnother(){
+	console.log(another.join(&quot;!&quot;));
+}
+
+return{
+	doSomething: doSomething,
+	doAnother: doAnother
+}
+</code></pre>
 </li>
 </ol>
-<p>var res2 = encodeURI('<p>dddd</p>');</p>
-<p>console.log('sssss',res2);</p>
+<p>}</p>
+<p>var foo = CoolModule();
+foo.doSomething();
+foo.doAnother();</p>
+<p>// 现代模块
+var MyModule = (function Manager(){
+var modules = {};</p>
+<pre><code> function define(name, deps, impl){
+ 	for(var i = 0; i &lt; deps.length; i ++){
+ 		deps[i] = modules[deps[i]];
+ 	}
+ 	modules[name] = impl.apply(impl, deps);
+ }
+
+ function get(name){
+ 	return modules[name];
+ }
+
+ return {
+ 	define: define,
+ 	get: get
+ }
+</code></pre>
+<p>})();</p>
+<p>MyModule.define(&quot;bar&quot;, [], function(){
+function hello(who){
+return &quot;Let me introduce: &quot; + who;
+}</p>
+<pre><code> return {
+ 	hello: hello
+ }
+</code></pre>
+<p>})</p>
+<p>MyModule.define(&quot;foo&quot;, [&quot;bar&quot;], function(bar){
+var hungry = &quot;hippo&quot;;</p>
+<pre><code> function awesome(){
+ 	console.log(bar.hello(hungry).toUpperCase());
+ }
+
+ return {
+ 	awesome: awesome
+ }
+</code></pre>
+<p>})</p>
+<p>var bar = MyModule.get(&quot;bar&quot;);
+var foo = MyModule.get(&quot;foo&quot;);</p>
+<p>console.log(bar.hello(&quot;hippo&quot;));</p>
+<p>foo.awesome();
+```</p>
+</li>
+</ol>
 
             </div>
           </article>
@@ -187,7 +396,7 @@ var o2 = {
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://smallpotatocz.github.io/exercise-for-js/images/avatar.png?v=1559364734535" class="no-responsive avatar">
+    <img src="https://smallpotatocz.github.io/exercise-for-js/images/avatar.png?v=1559466970781" class="no-responsive avatar">
     <div class="text-muted">吾尝终日不食，终夜不寝，以思，无益，不如学也。</div>
     <div class="social-container">
       
@@ -225,7 +434,7 @@ var o2 = {
     </div>
     <div class="row">
       
-        <a href="https://smallpotatocz.github.io/exercise-for-js/tag/cYB_yrKQ1" class="badge secondary">
+        <a href="https://smallpotatocz.github.io/exercise-for-js/tag/cYB_yrKQ1" class="badge success">
           JavaScript
         </a>
       
