@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://smallpotatocz.github.io/exercise-for-js</id>
     <title>EsilyZhang</title>
-    <updated>2019-06-02T12:07:14.672Z</updated>
+    <updated>2019-06-02T17:23:19.969Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://smallpotatocz.github.io/exercise-for-js"/>
     <link rel="self" href="https://smallpotatocz.github.io/exercise-for-js/atom.xml"/>
@@ -27,10 +27,239 @@
 <p>这篇文章你将要学习，使用<code>console</code> API 提供的方法如何去调试你的 web 应用。一些浏览器自己提供了独有的更多功能，所以我会提出其中的兼容性问题。</p>
 <p>让我们开始吧。</p>
 <h2 id="使用console开发者工具">使用<code>console</code>开发者工具</h2>
-<p>如果你之前还没有使用<code>console</code>开发者工具，但是也不用担心。在这一小节，我将要去向你展示如何去获得和使用<code>console</code>。如果你已经对这个熟悉，放心地跳到下一小结。</p>
+<p>如果你之前还没有使用<code>console</code>开发者工具，但是也不用担心。在这一小节，我将要去向你展示如何去获得和使用<code>console</code>。如果你已经对这个熟悉，随心地跳到下一小节继续。</p>
 <p>打开你的浏览器的开发者工具有很多种的方法。最简单的是在页面的任何地方点击鼠标右键，在出现的菜单中选择<code>审查元素</code>。</p>
 <p>你也可以使用快捷键去打开开发者工具。浏览器的快捷建在 Mac 上是 <code>Alt</code> + <code>Command</code> + <code>I</code>，对于 Windows 你可以使用 <code>Ctrl</code> + <code>Shift</code> + <code>I</code>。</p>
 <p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559477173222.png" alt="谷歌开发者工具"></p>
+<p>一旦你打开了开发者工具，点击工具栏<strong>Console</strong>标签可以开启<code>console</code>面板。</p>
+<blockquote>
+<p><strong>注意</strong>：在这片文章中，我们使用的是浏览器提供的默认<code>console</code>工具。浏览器的扩展工具里有许多更好的类似功能的工具。火狐用户希望去安装 Firebug，因为 Firebug 提供了一些其内置<code>console</code>没有的功能。</p>
+</blockquote>
+<p>现在你已经打开了 <code>console</code>工具，下面执行一个简单的状态输出。</p>
+<p>向<code>console</code>中输入下面的语句，然后按<strong>回车</strong>：</p>
+<pre><code class="language-javascript">console.log(&quot;Hello World!&quot;);
+</code></pre>
+<p>你应该在<code>console</code>中看到打印出了测试用的*Hello World!*字符。</p>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559478596280.png" alt="在谷歌浏览器的开发者工具中使用console.log"></p>
+<p>既然你快速学会了如何使用控制台，那就让我们看一下，调试应用时使用的所有的<code>console</code> API吧。</p>
+<h2 id="consolelogobject-object">console.log(object[, object ...])</h2>
+<p>通过使用最常用的<code>console</code>方法——<code>console.log()</code>，作为我们教程的开始。这个方法简单输出一个对象到控制台。</p>
+<pre><code class="language-javascript">console.log(&quot;Hello Treehouse&quot;);
+</code></pre>
+<p>如果参数是多个对象，这些参数将要处理成单行且由空格分隔的对象序列，然后输出到控制台。</p>
+<pre><code class="language-javascript">console.log('This is a string',  { foo: 'bar' }, { bar: 'foo' });
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559485892106.png" alt="log-with-multiply-parameters"></p>
+<p>第一个参数可以包含<em>格式说明符</em>，允许你去定义后续对象的指定位置和格式。</p>
+<pre><code class="language-javascript">var number = 11 * 9;
+var color = 'red';
+
+console.log('%d %s ballons', number, color);
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559486229736.png" alt="log-with-format"></p>
+<p>下面是控制台支持的格式说明符：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>格式说明符</strong></th>
+<th style="text-align:center"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>%s</code></td>
+<td style="text-align:center">String(字符串)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>%d</code> 或 <code>%i</code></td>
+<td style="text-align:center">integer(整数型)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>%f</code></td>
+<td style="text-align:center">Floating point value(浮点型</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>%o</code></td>
+<td style="text-align:center">Expandable DOM element(可扩展的 DOM 元素)</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>%O</code></td>
+<td style="text-align:center">Expanable JavaScript object(可扩展的 JavaScript 对象)</td>
+</tr>
+<tr>
+<td style="text-align:center">%c</td>
+<td style="text-align:center">Fromats the output using the CSS style you provide(根据你提供的 CSS 样式格式化输出)</td>
+</tr>
+</tbody>
+</table>
+<p>使用 <code>%c</code> 格式化输出的例子：</p>
+<pre><code class="language-javascript">console.log('%cThis text is styled!', 'color: #86cc00; backgound-color:blue; font-size:20px;padding:3px;');
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559486831665.png" alt="log-with-css"></p>
+<h2 id="consoleassertexpression-object">console.assert(expression, object)</h2>
+<p>这个 <code>console.assert()</code> 需要两个参数，一个布尔表达式，一个对象。如果不二表达式的值是 <code>false</code>，控制台将会打印对象值。</p>
+<p>你可能会使用字符串对象作为第二个对象，但是它支持所有的 JavaScript 对象。</p>
+<pre><code class="language-javascript">var count = 5;
+console.assert(count &gt; 10, 'count is not lager than 10.');
+</code></pre>
+<p>这个表达式判断 <code>count</code>变量的值是否大于 10。如果不是，这个 'count is not larger than 10.' 会输出在控制台。</p>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559487273746.png" alt="assert"></p>
+<h2 id="consoleclear">console.clear()</h2>
+<p>这个 <code>console.clear()</code> 方法会清空控制台窗口的输出内容。</p>
+<blockquote>
+<p>**注意：**火狐的默认控制台不支持这个方法，但是 Firebug 是支持这个方法的。</p>
+</blockquote>
+<h2 id="consolecountlabel">console.count(label)</h2>
+<p>这个<code>console.count()</code>方法将要输出<code>count</code>方法已经调用的次数。如果在同一行调用这个方法，你只能得到一次计数，每次都会是同样的标签。</p>
+<p>这个方法对于找到你代码中的一个函数被调用了多少次是非常实用的。</p>
+<pre><code class="language-javascript">function clickHandler(){
+	console.count('Click handler called');console.count(&quot;This count is at same line&quot;);
+}
+</code></pre>
+<blockquote>
+<p>**提示：**在控制台中创建多行表达式，可以通过利用<code>Shift</code> + <code>Enter</code>创建新行的方法解决。</p>
+</blockquote>
+<p>你可以通过<code>for</code>循环去测试这个方法。</p>
+<pre><code class="language-javascript">for(var i = 0; i&lt; 3; i++){
+	clickHandler();
+}
+</code></pre>
+<p><code>for</code>将要调用函数三次。</p>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559488363799.png" alt="count"></p>
+<blockquote>
+<p>**注意：**火狐的默认控制台不支持这个方法，但是 Firebug 是支持这个方法的。</p>
+</blockquote>
+<h2 id="consoledirobject">console.dir(object)</h2>
+<p>这个方法是用来打印 JavaScript 支持的对象到控制台的。这个方法尤其对于检查 HTML 元素非常有用，因为它展示的是 DOM 格式的数据，而不是像使用<code>console.log()</code>方法时产生的 XML 格式的输出一样。</p>
+<pre><code class="language-javascript">console.dir(document.body);
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559488738124.png" alt="dir"></p>
+<h2 id="consoledirxmlobject">console.dirxml(object)</h2>
+<p>这个方法打印的 XML 格式的对象。</p>
+<pre><code class="language-javascript">console.dirxml(document.body);
+</code></pre>
+<p>当用来打印 HTMl 元素时，输出与使用<code>console.log()</code>方法相同。</p>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559488923951.png" alt="dirxml"></p>
+<blockquote>
+<p>**注意：**火狐的默认控制台不支持这个方法，但是 Firebug 是支持这个方法的。</p>
+</blockquote>
+<h2 id="consoleerrorobject-object">console.error(object[, object])</h2>
+<p>这个方法将一个或者更多的对象参数输出到控制台。它类似于<code>console.log()</code>，但是<code>console.error()</code>也会在方法调用的地方打印一个堆栈追踪。这个打印将要标记为在控制台里的一个错误。</p>
+<pre><code class="language-javascript">console.error('Page not found(404)');
+</code></pre>
+<p>这个方法在写执行错误时非常的实用。</p>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559489541876.png" alt="error"></p>
+<h2 id="consolegroupobject-object">console.group(object[, object])</h2>
+<p>这个方法时用来共同组织一系列的日志消息的。一旦这个方法被调用，一切的日志信息都将要增加到组里，至到调用<code>consoe.groupEnd()</code>方法去关闭这个组。</p>
+<p>你可以标识一个可选的标题方便在控制台中找到它。</p>
+<pre><code class="language-javascript">console.group('Fetching Data');
+</code></pre>
+<p>它们之间也可以嵌套。</p>
+<pre><code class="language-javascript">console.group('Group One');
+console.group('Group Two');
+console.log(&quot;group output&quot;);
+console.groupEnd();
+console.groupEnd();
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559490043328.png" alt="group"></p>
+<h2 id="consolegroupcollapsedobject-object">console.groupCollapsed(object[, object])</h2>
+<p>这个方法本质上和<code>console.group()</code>一样，尤其是对于初始展示组是以折叠的状态而不是展开的状态。</p>
+<pre><code class="language-javascript">console.groupCollapsed('Fetching Data');
+
+console.log(&quot;Requeste Sent&quot;);
+console.error(&quot;Error: Server not responding (500)&quot;);
+
+console.groupEnd();
+
+console.log(&quot;Continuting...&quot;);
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559492087677.png" alt="groupCollapsed"></p>
+<h2 id="consoleinfoobject-object">console.info(object[, object])</h2>
+<p>这个方法除了被标识为<code>info</code>，其它的和<code>console.log()</code>一样。表示 info 对于开发者控制台工具来说具有一项功能，允许你去通过标识去过滤日志。</p>
+<p>注意下面图片中这个日志左边的 info 图标。</p>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559492568048.png" alt="info"></p>
+<h2 id="consoleprofileprofile-consoleprofileend">console.profile([profile]) &amp; console.profileEnd()</h2>
+<p>如果开发者工具开启的话， 这个方法将会新建一个 JavaScript CPU 使用情况的概述。方便你想要的概述，你可以为它添加一个标签。</p>
+<p>这个 <code>console.profileEnd()</code>方法将要结束这个概述。</p>
+<pre><code class="language-javascript">function loop(){
+	console.profile(&quot;Loop&quot;);
+	
+	for(var i = 0; i&lt; 5; i ++){
+		console.log(i);
+	}
+	
+	console.profileEnd();
+}
+</code></pre>
+<p>上面的例子显示了你如何使用<code>profile()</code>方法去创造一个新的<code>loop</code> CPU 使用情况的概述。</p>
+<blockquote>
+<p>**注意：**如何在开发者工具中没有看到 <code>JavaScript Profile</code>，你需要在开发者工具窗口的右上角，点击<code>Customize and control Devtools</code>，选择<code>more tools</code> &gt; <code>JavaScript Profiler</code></p>
+</blockquote>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559493593354.png" alt="profiler"></p>
+<h2 id="consoletabledata">console.table(data)</h2>
+<p>这个方法允许你将结构化的数据作为一个交互式表格输出到控制台中。</p>
+<pre><code class="language-javascript">var data = [
+	{first_name: 'Matt', last_name: 'West', occupation: 'Programmer'},
+    {first_name: 'Vince', last_name: 'Vaughn', occupation: 'Actor'},
+    {first_name: 'Larry', last_name: 'Page', occupation: 'CEO'} 
+];
+
+console.table(data);
+</code></pre>
+<p>这个方法可能是真实地操作 AJAX 返回的数据。</p>
+<blockquote>
+<p>**注意：**火狐的默认控制台不支持这个方法，但是 Firebug 是支持这个方法的。</p>
+</blockquote>
+<h2 id="consoletimelabel-consoletimeendlabel">console.time(label) &amp; console.timeEnd(label)</h2>
+<p>上面的两个方法用来统计一段代码的执行所需要的时间。<code>time()</code>和<code>timeEnd</code>都应该使用同一个标签参数。</p>
+<pre><code class="language-javascript">console.time('Draw frame');
+
+for(var i = 0; i &lt; 5; i ++){
+	console.log(i);
+}
+
+console.timeEnd('Draw frame');
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559494361832.png" alt="time"></p>
+<h2 id="consoletimelinelabel-consoletimelineendlabel">console.timeline(label) &amp; console.timelineEnd(label)</h2>
+<p>这两个方法允许你在 Chrome 开发者工具中创建一个新的时间线记录数据。</p>
+<p>你可以为时间线打标记。这两个方法的标签一定要一样。</p>
+<pre><code class="language-javascript">console.timeline('Google Search');
+
+for(var i = 0; i &lt; 5; i ++){
+	console.log(i);
+}
+
+console.timelineEnd('Google Search');
+</code></pre>
+<blockquote>
+<p>**注意：**这个方法并不被 Chrome 支持。之前它被称为 <code>console.markTimeLine()</code>。</p>
+</blockquote>
+<h2 id="consoletimestamplabel">console.timeStamp(label)</h2>
+<p>你可以使用<code>console.timeStamp()</code>方法去手动地添加事件到时间线。这个方法允许你通过一个标签参数，帮助你在开发者工具中标记这个创建者。</p>
+<blockquote>
+<p>**注意：**这个方法并不被 Chrome 支持。之前它被称为 <code>console.markTimeLine()</code>。</p>
+</blockquote>
+<h2 id="consoletrace">console.trace()</h2>
+<p>这个方法会在调用的地方打印出一份堆栈追踪。</p>
+<pre><code class="language-javascript">console.trace();
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559495376907.png" alt="trace"></p>
+<h2 id="consolewarnobject-object">console.warn(object[, object])</h2>
+<p>这个方法将要打印带有<code>warning</code>标志的日志。</p>
+<pre><code class="language-javascript">console.warn(&quot;This is a warning&quot;);
+</code></pre>
+<p><img src="https://smallpotatocz.github.io/exercise-for-js/post-images/1559495523341.png" alt="warn"></p>
+<h2 id="总结">总结</h2>
+<p>在这片文章中，你已经学习了各种各样的用来调试你的 Web 应用的 <code>console</code> 方法。你将要发现你使用的其中的一些方法比起其他方法来说次数会更多，但是了解通过开发人员工具控制台可以实现什么当然是有用的。</p>
+<p>强烈建议你去点击跳转下面的进一步阅读中提供的链接，尤其是谷歌开发者网站提供的 <em><a href="https://developers.google.com/chrome-developer-tools/docs/tips-and-tricks">dev tools tips and tricks</a></em></p>
+<p>当你调式你的前端 Web 应用时，你喜欢使用哪个工具？在下方评论区分享你最喜欢的工具。</p>
+<h2 id="进一步阅读">进一步阅读</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/console">MDN: Console Documentation</a></li>
+<li><a href="https://developers.google.com/chrome-developer-tools/docs/console-api">Google Developers: Console API Reference</a></li>
+<li><a href="https://developers.google.com/chrome-developer-tools/docs/tips-and-tricks">Google Developers: Dev Tools Tips and Tricks</a></li>
+</ul>
 ]]></content>
     </entry>
     <entry>
