@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://smallpotatocz.github.io/exercise-for-js</id>
     <title>EsilyZhang</title>
-    <updated>2019-06-02T09:18:14.731Z</updated>
+    <updated>2019-06-02T09:49:01.626Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://smallpotatocz.github.io/exercise-for-js"/>
     <link rel="self" href="https://smallpotatocz.github.io/exercise-for-js/atom.xml"/>
@@ -300,6 +300,74 @@ var foo = MyModule.get(&quot;foo&quot;);</p>
 ```</p>
 </li>
 </ol>
+<h2 id="动态作用域">动态作用域</h2>
+<pre><code class="language-javascript">// 假设 JS 引擎是词法作用域
+function foo(){
+	console.log(a);
+}
+
+function bar(){
+	var a = 3;
+	foo();
+}
+var a = 2;
+bar();
+</code></pre>
+<p><a href="https://rextester.com/JHEGQ58380">Bash Demo</a></p>
+<h2 id="this-词法">this 词法</h2>
+<pre><code class="language-javascript">// this 的丢失
+var obj = {
+  id: &quot;awesome&quot;,
+  cool: function coolFn(){
+    console.log(this.id);
+  }
+}
+
+var id = &quot;not awesome&quot;;
+
+obj.cool(); 
+
+setTimeout(obj.cool, 100);
+
+// 解决办法
+var obj = {
+  count: 0,
+  cool: function coolFn(){
+    var self = this;
+    
+    if(self.count &lt; 1){
+      setTimeout(function timer(){
+        self.count ++;
+        console.log(&quot;awesome&quot;);
+      }, 100)
+    }
+  }
+}
+
+var obj = {
+  count: 0,
+  cool: function coolFn(){
+    if(this.count &lt; 1){
+      setTimeout(()=&gt;{
+        this.count ++;
+        console.log(&quot;awesome&quot;);
+      } ,100);
+    }
+  }
+}
+
+var obj = {
+  count: 0,
+  cool: function coolFn(){
+    if(this.count &lt; 1){
+      setTimeout(function timer(){
+        this.count ++;
+        console.log(&quot;more awesome&quot;);
+      }.bind(this), 100)
+    }
+  }
+}
+</code></pre>
 ]]></content>
     </entry>
 </feed>
